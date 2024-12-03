@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/src/Entity/Coordinates.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/Entity/Creature/Creature.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/Entity/Creature/Herbivore.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/Entity/Entity.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/Entity/Landscape/Landscape.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/Main.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/Map.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/MapPrinter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Simulation/Entity/Coordinates.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Simulation/Entity/Creature/Creature.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Simulation/Entity/Creature/Herbivore.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Simulation/Entity/Entity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Simulation/Entity/Landscape/Landscape.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Simulation/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Simulation/Map/MapPrinter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Simulation/Map/WorldMap.java" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

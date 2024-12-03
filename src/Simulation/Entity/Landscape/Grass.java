@@ -1,12 +1,13 @@
-package Entity.Landscape;
+package Simulation.Entity.Landscape;
 
-import Entity.Coordinates;
+import Simulation.Entity.Coordinates;
 
 public class Grass extends Landscape {
 
 
-    public String getUnicodeSim() {
-        return "︿";
+    @Override
+    public String getSprite() {
+        return "\uD83C\uDF40";
     }
 
     public Coordinates coordinates;

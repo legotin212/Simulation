@@ -1,12 +1,16 @@
-package Entity.Landscape;
+package Simulation.Entity.Landscape;
 
-import Entity.Coordinates;
+import Simulation.Entity.Coordinates;
 
 public class Rock extends Landscape{
     public Coordinates coordinates;
-    public String getUnicodeSim() {
-        return "￭";
+
+    @Override
+    public String getSprite() {
+        return "\uD83D\uDDFF" + " " +" ";
+
     }
+
     public Rock(Coordinates coordinates) {
         this.coordinates = coordinates;
     }

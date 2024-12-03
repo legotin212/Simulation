@@ -1,6 +1,6 @@
-package Entity;
+package Simulation.Entity;
 
 public abstract class Entity {
-    public abstract String getUnicodeSim();
+    public abstract String getSprite();
     public Coordinates coordinates;
 }
