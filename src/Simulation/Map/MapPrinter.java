@@ -21,6 +21,7 @@ public class MapPrinter {
                 } else {
 
                     line += getEntitySprite(worldMap.getEntity(coordinates));
+
                 }
             }
             System.out.println(line);

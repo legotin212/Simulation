@@ -18,6 +18,7 @@ public class PathFinder {
         Coordinates down = new Coordinates(coordinates.x, coordinates.y-1);
         Coordinates left = new Coordinates(coordinates.x-1, coordinates.y);
         Coordinates right = new Coordinates(coordinates.x+1, coordinates.y);
+
         if(worldMap.checkIfPassable(up)&&worldMap.checkIfInBound(up)){coordinatesList.add(up);}
         if(worldMap.checkIfPassable(down)&&worldMap.checkIfInBound(down)){coordinatesList.add(down);}
         if(worldMap.checkIfPassable(left)&&worldMap.checkIfInBound(left)){coordinatesList.add(left);}
@@ -51,7 +52,10 @@ public class PathFinder {
                 }
             }
         }
-        return Optional.empty();
+        List<Coordinates> path = new ArrayList<>();
+        path.add(current);
+        path.add(current);
+        return Optional.of(path);
     }
 
 }

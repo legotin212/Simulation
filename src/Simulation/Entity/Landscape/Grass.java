@@ -10,8 +10,4 @@ public class Grass extends Landscape {
         return "\uD83C\uDF40";
     }
 
-    public Coordinates coordinates;
-    public Grass(Coordinates coordinates) {
-        this.coordinates = coordinates;
-    }
 }

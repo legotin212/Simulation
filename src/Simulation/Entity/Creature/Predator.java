@@ -45,9 +45,11 @@ public class Predator extends Creature {
     @Override
     public void makeMove() {
         if (pathFinder.findPathToNearestTarget(coordinates, Herbivore.class.getName()).isPresent()) {
-            Coordinates next = pathFinder.findPathToNearestTarget(coordinates,Herbivore.class.getName()).get().get(1);
-            worldMap.removeEntity(coordinates);
+            Coordinates next = pathFinder.findPathToNearestTarget(coordinates,Herbivore.class.getName()).get().get(1);///если цели нет возвращает 1 элемент и случается баг
+            if(worldMap.checkIfHerbivore(next)) {
+            }
             worldMap.setEntity(this, next);
+            worldMap.removeEntity(coordinates);
             coordinates = next;
         }
     }

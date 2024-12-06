@@ -10,6 +10,15 @@ public class Herbivore extends Creature{
     private WorldMap worldMap;
     private Integer speed;
     private Integer hp;
+    private Integer attack;
+
+    public Integer getAttack() {
+        return attack;
+    }
+
+    public void setAttack(Integer attack) {
+        this.attack = attack;
+    }
 
     public void setPathFinder(PathFinder pathFinder) {
         this.pathFinder = pathFinder;
@@ -46,8 +55,12 @@ public class Herbivore extends Creature{
         this.worldMap = worldMap;
         this.hp=1;
         this.speed=1;
+        this.attack=1;
     }
-
+    private  void  consumeGrass(Coordinates herbCoordinates){
+        //herb hp++
+    }
+//    public Coordinates getCoordinatesToMove(){}
     @Override
     public void makeMove() {
         if (pathFinder.findPathToNearestTarget(coordinates, Grass.class.getName()).isPresent()) {

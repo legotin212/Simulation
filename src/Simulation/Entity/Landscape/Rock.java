@@ -3,7 +3,7 @@ package Simulation.Entity.Landscape;
 import Simulation.Entity.Coordinates;
 
 public class Rock extends Landscape{
-    public Coordinates coordinates;
+
 
     @Override
     public String getSprite() {
@@ -11,7 +11,4 @@ public class Rock extends Landscape{
 
     }
 
-    public Rock(Coordinates coordinates) {
-        this.coordinates = coordinates;
-    }
 }
