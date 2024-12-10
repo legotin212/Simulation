@@ -1,4 +1,7 @@
 package Simulation.Actions;
 
-public interface Action {
+import Simulation.Map.WorldMap;
+
+public abstract class Action {
+   public abstract void perform(WorldMap worldMap);
 }

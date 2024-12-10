@@ -5,6 +5,12 @@ import Simulation.Entity.Entity;
 
 public class MapPrinter {
     private WorldMap worldMap;
+    private final String HERBIVORE_SPRITE = "\uD83D\uDC07";
+    private final String PREDATOR_SPRITE = "\uD83D\uDC3A";
+    private final String GRASS_SPRITE = "\uD83C\uDF40";
+    private final String TREE_SPRITE = "\uD83C\uDF33" + " ";
+    private final String ROCK_SPRITE = "\uD83D\uDDFF" + " " +" ";
+    private final String EMPTY_SQUARE_SPRITE = "\uD83D\uDFEB";
 
     public MapPrinter(WorldMap worldMap) {
         this.worldMap = worldMap;
@@ -12,28 +18,32 @@ public class MapPrinter {
 
     public void printMap(WorldMap worldMap) {
         for (int rank = 0; rank < worldMap.getMapSize(); rank++) {
-            String line = "";
+            StringBuilder line = new StringBuilder();
             for (int file = 0; file < worldMap.getMapSize(); file++) {
-                line += " ";
+                line.append(" ");
                 Coordinates coordinates = new Coordinates(file, rank);
-                if (worldMap.checkIfEmpty(coordinates)) {
-                    line += getSpriteForEmptySquare(coordinates);
+                if (worldMap.checkIfCoordinatesIsEmpty(coordinates)) {
+                    line.append(getSpriteForEmptySquare(coordinates));
                 } else {
-
-                    line += getEntitySprite(worldMap.getEntity(coordinates));
-
+                    line.append(getEntitySprite(worldMap.getEntityByCoordinates(coordinates)));
                 }
             }
             System.out.println(line);
         }
-
     }
 
     private String getSpriteForEmptySquare(Coordinates coordinates) {
-        return "\uD83D\uDFEB";
+        return EMPTY_SQUARE_SPRITE;
     }
     private String getEntitySprite(Entity entity) {
-        return entity.getSprite();
+        return switch (entity.getClass().getSimpleName()) {
+            case "Herbivore" -> HERBIVORE_SPRITE;
+            case "Predator" -> PREDATOR_SPRITE;
+            case "Grass" -> GRASS_SPRITE;
+            case "Tree" -> TREE_SPRITE;
+            case "Rock" -> ROCK_SPRITE;
+            default -> throw new IllegalArgumentException("Unknown entity class: " + entity.getClass().getName());
+        };
     }
 
 

@@ -4,50 +4,30 @@ import Simulation.Entity.Coordinates;
 import Simulation.Entity.Landscape.Grass;
 import Simulation.Map.WorldMap;
 
+import java.util.List;
+
 public class Herbivore extends Creature{
     public Coordinates coordinates;
     private PathFinder pathFinder;
     private WorldMap worldMap;
     private Integer speed;
     private Integer hp;
-    private Integer attack;
-
-    public Integer getAttack() {
-        return attack;
-    }
-
-    public void setAttack(Integer attack) {
-        this.attack = attack;
-    }
-
-    public void setPathFinder(PathFinder pathFinder) {
-        this.pathFinder = pathFinder;
-    }
 
     public void setWorldMap(WorldMap worldMap) {
         this.worldMap = worldMap;
-    }
-
-    public Integer getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(Integer speed) {
-        this.speed = speed;
     }
 
     public Integer getHp() {
         return hp;
     }
 
-    public void setHp(Integer hp) {
-        this.hp = hp;
+    public Integer getDamage(Integer damage) {
+        this.hp -= damage;
+        System.out.println("Herbivore has " + this.hp + " hp after attack");
+        return this.hp;
+
     }
 
-    @Override
-    public String getSprite() {
-        return "\uD83D\uDC07";
-    }
 
     public Herbivore(WorldMap worldMap, PathFinder pathFinder,Coordinates coordinates) {
         this.coordinates = coordinates;
@@ -55,20 +35,30 @@ public class Herbivore extends Creature{
         this.worldMap = worldMap;
         this.hp=1;
         this.speed=1;
-        this.attack=1;
     }
-    private  void  consumeGrass(Coordinates herbCoordinates){
-        //herb hp++
-    }
-//    public Coordinates getCoordinatesToMove(){}
+
     @Override
     public void makeMove() {
-        if (pathFinder.findPathToNearestTarget(coordinates, Grass.class.getName()).isPresent()) {
-            Coordinates next = pathFinder.findPathToNearestTarget(coordinates, Grass.class.getName()).get().get(1);
-            worldMap.removeEntity(coordinates);
-            worldMap.setEntity(this, next);
+        List<Coordinates> path = pathFinder.findPathToNearestTarget(coordinates,Grass.class,worldMap);
+        if(!path.isEmpty()){
+            Coordinates next = path.get(1);
+            if(worldMap.checkIfTarget(next, Grass.class)){
+                consumeGrass(next);
+            }
+            worldMap.removeEntityByCoordinates(coordinates);
+            worldMap.setEntityOnMapByCoordinates(this, next);
             coordinates = next;
         }
 
     }
-}
+
+    public void consumeGrass(Coordinates herbCoordinates){
+        if(hp<2){
+            this.hp+=1;
+        }
+        worldMap.removeEntityByCoordinates(herbCoordinates);
+        System.out.println("Herbivore consumed grass now it has " + this.hp + " hp");
+        }
+    }
+
+

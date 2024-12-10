@@ -1,10 +1,8 @@
 package Simulation.Map;
 
 import Simulation.Entity.Coordinates;
-import Simulation.Entity.Creature.Herbivore;
 import Simulation.Entity.Creature.Predator;
 import Simulation.Entity.Entity;
-import Simulation.Entity.Landscape.Grass;
 import Simulation.Entity.Landscape.Rock;
 import Simulation.Entity.Landscape.Tree;
 
@@ -12,61 +10,62 @@ import java.util.*;
 
 public class WorldMap {
 
-    public HashMap<Coordinates, Entity> entities = new HashMap<>();
+    private final Map<Coordinates, Entity> entities = new HashMap<>();
+
+    private int mapSize;
 
     public WorldMap() {
     }
 
+    public void setMapSize(int mapSize) {
+        this.mapSize = mapSize;
+    }
+
     public  int getMapSize(){
-        return 10;
+        return mapSize;
     }
 
-    public void setEntity(Entity entity, Coordinates coordinates){
-        if(checkIfEmpty(coordinates)){entities.put(coordinates, entity);}
-        else{throw new IllegalArgumentException("Coordinates is not empty");}
-
-
+    public Collection<Entity> getAllEntities(){
+        return entities.values();
     }
-    public void removeEntity(Coordinates coordinates){
+
+    public void setEntityOnMapByCoordinates(Entity entity, Coordinates coordinates){
+        if(checkIfCoordinatesIsEmpty(coordinates)&&checkIfInBound(coordinates)){entities.put(coordinates, entity);}
+        else{throw new IllegalArgumentException("Coordinates is not empty or out of bounds " + coordinates);}
+    }
+    public void removeEntityByCoordinates(Coordinates coordinates){
+        if (checkIfCoordinatesIsEmpty(coordinates)){throw new IllegalArgumentException("No entity found " + coordinates);}
         entities.remove(coordinates);
     }
 
-    public Entity getEntity(Coordinates coordinates) {
-        if(!checkIfEmpty(coordinates)){return entities.get(coordinates);}
-        else {throw new IllegalArgumentException("No entity found");}
+    public Entity getEntityByCoordinates(Coordinates coordinates) {
+        if(!checkIfCoordinatesIsEmpty(coordinates)){return entities.get(coordinates);}
+        else {throw new IllegalArgumentException("No entity found " + coordinates);}
     }
 
-    public boolean checkIfEmpty(Coordinates coordinates){
+    public Boolean checkIfCoordinatesIsEmpty(Coordinates coordinates){
         return !entities.containsKey(coordinates);
     }
-
     public Boolean checkIfInBound(Coordinates coordinates){
         return coordinates.y >= 0 && coordinates.y <= getMapSize() - 1 && coordinates.x >= 0 && coordinates.x <= getMapSize() - 1;
     }
+
     public Boolean checkIfPassable(Coordinates coordinates){
-      return checkIfEmpty(coordinates) || !((getEntity(coordinates) instanceof Rock)||(getEntity(coordinates) instanceof Tree));
-        }
-
-
-    public Boolean checkIfGrass(Coordinates coordinates){
-        return getEntity(coordinates) instanceof Grass;
+        return checkIfCoordinatesIsEmpty(coordinates) || !((getEntityByCoordinates(coordinates) instanceof Rock)||(getEntityByCoordinates(coordinates) instanceof Tree)
+                ||(getEntityByCoordinates(coordinates) instanceof Predator));
     }
 
-    public Boolean checkIfHerbivore(Coordinates coordinates){
-        if(checkIfEmpty(coordinates)){return false;}
-        return getEntity(coordinates) instanceof Herbivore;
-    }
-    public Boolean checkIfTarget(Coordinates coordinates, String targetClassName){
-        if(checkIfEmpty(coordinates)){return false;}
-        return getEntity(coordinates).getClass().getName().equals(targetClassName);
+    public Boolean checkIfTarget(Coordinates coordinates, Class<?> target){
+        if(checkIfCoordinatesIsEmpty(coordinates)){return false;}
+        return getEntityByCoordinates(coordinates).getClass().equals(target);
     }
 
     public Coordinates getRandomEmptyCoordinates(){
         Random rand = new Random();
         while(true){
             Coordinates next = new Coordinates(rand.nextInt(getMapSize()-1), rand.nextInt(getMapSize()-1));
-            if(checkIfEmpty(next)){return next;}
-            }///Может зависнуть если нет пустых координат
+            if(checkIfCoordinatesIsEmpty(next)){return next;}
+            }
         }
     }
 

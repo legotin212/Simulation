@@ -5,8 +5,9 @@ import Simulation.Entity.Coordinates;
 import Simulation.Entity.Entity;
 
 public abstract class Creature extends Entity {
-    int speed;
-    int hp;
+    private Integer speed;
+    private Integer hp;
+
     public abstract void makeMove();
     Coordinates coordinates;
 }
