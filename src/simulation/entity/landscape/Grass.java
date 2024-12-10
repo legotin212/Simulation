@@ -1,4 +1,4 @@
-package Simulation.Entity.Landscape;
+package simulation.entity.landscape;
 
 public class Grass extends Landscape {
 }

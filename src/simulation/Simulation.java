@@ -1,11 +1,10 @@
-package Simulation;
+package simulation;
 
-import Simulation.Actions.Action;
-import Simulation.Actions.InitAction;
-import Simulation.Map.MapPrinter;
-import Simulation.Map.WorldMap;
+import simulation.actions.Action;
+import simulation.actions.InitAction;
+import simulation.map.MapPrinter;
+import simulation.map.WorldMap;
 import java.util.List;
-import java.util.Scanner;
 
 public class Simulation implements Runnable {
     private WorldMap worldMap;

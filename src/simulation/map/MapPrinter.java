@@ -1,7 +1,7 @@
-package Simulation.Map;
+package simulation.map;
 
-import Simulation.Entity.Coordinates;
-import Simulation.Entity.Entity;
+import simulation.entity.Coordinates;
+import simulation.entity.Entity;
 
 public class MapPrinter {
     private WorldMap worldMap;
@@ -23,7 +23,7 @@ public class MapPrinter {
                 line.append(" ");
                 Coordinates coordinates = new Coordinates(file, rank);
                 if (worldMap.checkIfCoordinatesIsEmpty(coordinates)) {
-                    line.append(getSpriteForEmptySquare(coordinates));
+                    line.append(EMPTY_SQUARE_SPRITE);
                 } else {
                     line.append(getEntitySprite(worldMap.getEntityByCoordinates(coordinates)));
                 }
@@ -32,9 +32,6 @@ public class MapPrinter {
         }
     }
 
-    private String getSpriteForEmptySquare(Coordinates coordinates) {
-        return EMPTY_SQUARE_SPRITE;
-    }
     private String getEntitySprite(Entity entity) {
         return switch (entity.getClass().getSimpleName()) {
             case "Herbivore" -> HERBIVORE_SPRITE;

@@ -1,10 +1,10 @@
-package Simulation.Map;
+package simulation.map;
 
-import Simulation.Entity.Coordinates;
-import Simulation.Entity.Creature.Predator;
-import Simulation.Entity.Entity;
-import Simulation.Entity.Landscape.Rock;
-import Simulation.Entity.Landscape.Tree;
+import simulation.entity.Coordinates;
+import simulation.entity.creature.Predator;
+import simulation.entity.Entity;
+import simulation.entity.landscape.Rock;
+import simulation.entity.landscape.Tree;
 
 import java.util.*;
 
@@ -12,7 +12,7 @@ public class WorldMap {
 
     private final Map<Coordinates, Entity> entities = new HashMap<>();
 
-    private int mapSize;
+    private int mapSize;    //final
 
     public WorldMap() {
     }
@@ -29,11 +29,11 @@ public class WorldMap {
         return entities.values();
     }
 
-    public void setEntityOnMapByCoordinates(Entity entity, Coordinates coordinates){
+    public void setEntity(Entity entity, Coordinates coordinates){
         if(checkIfCoordinatesIsEmpty(coordinates)&&checkIfInBound(coordinates)){entities.put(coordinates, entity);}
-        else{throw new IllegalArgumentException("Coordinates is not empty or out of bounds " + coordinates);}
+        throw new IllegalArgumentException("Coordinates is not empty or out of bounds " + coordinates);
     }
-    public void removeEntityByCoordinates(Coordinates coordinates){
+    public void removeEntity(Coordinates coordinates){
         if (checkIfCoordinatesIsEmpty(coordinates)){throw new IllegalArgumentException("No entity found " + coordinates);}
         entities.remove(coordinates);
     }
@@ -47,7 +47,7 @@ public class WorldMap {
         return !entities.containsKey(coordinates);
     }
     public Boolean checkIfInBound(Coordinates coordinates){
-        return coordinates.y >= 0 && coordinates.y <= getMapSize() - 1 && coordinates.x >= 0 && coordinates.x <= getMapSize() - 1;
+        return coordinates.column >= 0 && coordinates.column <= getMapSize() - 1 && coordinates.row >= 0 && coordinates.row <= getMapSize() - 1;
     }
 
     public Boolean checkIfPassable(Coordinates coordinates){
@@ -60,13 +60,7 @@ public class WorldMap {
         return getEntityByCoordinates(coordinates).getClass().equals(target);
     }
 
-    public Coordinates getRandomEmptyCoordinates(){
-        Random rand = new Random();
-        while(true){
-            Coordinates next = new Coordinates(rand.nextInt(getMapSize()-1), rand.nextInt(getMapSize()-1));
-            if(checkIfCoordinatesIsEmpty(next)){return next;}
-            }
-        }
+
     }
 
 

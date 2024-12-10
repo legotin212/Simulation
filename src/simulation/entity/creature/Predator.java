@@ -1,7 +1,7 @@
-package Simulation.Entity.Creature;
+package simulation.entity.creature;
 
-import Simulation.Entity.Coordinates;
-import Simulation.Map.WorldMap;
+import simulation.entity.Coordinates;
+import simulation.map.WorldMap;
 
 import java.util.List;
 
@@ -37,8 +37,8 @@ public class Predator extends Creature {
                 System.out.println("attack");
                 attack(next);
             } else {
-                worldMap.removeEntityByCoordinates(coordinates);
-                worldMap.setEntityOnMapByCoordinates(this, next);
+                worldMap.removeEntity(coordinates);
+                worldMap.setEntity(this, next);
                 coordinates = next;
             }
         }
@@ -49,7 +49,7 @@ public class Predator extends Creature {
         Herbivore herbivore = (Herbivore) worldMap.getEntityByCoordinates(next);
         Integer herbHP = herbivore.getDamage(this.getAttack());
         if(herbHP <= 0) {
-            worldMap.removeEntityByCoordinates(next);
+            worldMap.removeEntity(next);
             speed++;
             System.out.println("Predator ate herbivore and increased it's speed to " + speed);
         }

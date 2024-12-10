@@ -1,8 +1,8 @@
-package Simulation.Entity.Creature;
+package simulation.entity.creature;
 
 
-import Simulation.Entity.Coordinates;
-import Simulation.Entity.Entity;
+import simulation.entity.Coordinates;
+import simulation.entity.Entity;
 
 public abstract class Creature extends Entity {
     private Integer speed;

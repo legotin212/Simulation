@@ -1,4 +1,4 @@
-package Simulation.Entity;
+package simulation.entity;
 
 public abstract class Entity {
 

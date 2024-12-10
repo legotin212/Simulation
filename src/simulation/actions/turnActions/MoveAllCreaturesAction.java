@@ -1,11 +1,12 @@
-package Simulation.Actions;
+package simulation.actions.turnActions;
 
-import Simulation.Entity.Coordinates;
-import Simulation.Entity.Creature.Creature;
-import Simulation.Entity.Creature.Herbivore;
-import Simulation.Entity.Creature.Predator;
-import Simulation.Entity.Entity;
-import Simulation.Map.WorldMap;
+import simulation.actions.Action;
+import simulation.entity.Coordinates;
+import simulation.entity.creature.Creature;
+import simulation.entity.creature.Herbivore;
+import simulation.entity.creature.Predator;
+import simulation.entity.Entity;
+import simulation.map.WorldMap;
 
 import java.util.ArrayList;
 import java.util.List;

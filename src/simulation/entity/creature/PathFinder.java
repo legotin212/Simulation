@@ -1,8 +1,8 @@
-package Simulation.Entity.Creature;
+package simulation.entity.creature;
 
-import Simulation.Entity.Coordinates;
-import Simulation.Entity.Landscape.Grass;
-import Simulation.Map.WorldMap;
+import simulation.entity.Coordinates;
+import simulation.entity.landscape.Grass;
+import simulation.map.WorldMap;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -11,10 +11,10 @@ public class PathFinder {
 
     public List<Coordinates> getAvialibleCoordinateslist(Coordinates coordinates, WorldMap worldMap){
         List<Coordinates> coordinatesList = new ArrayList<>();
-        Coordinates up = new Coordinates(coordinates.x, coordinates.y+1);
-        Coordinates down = new Coordinates(coordinates.x, coordinates.y-1);
-        Coordinates left = new Coordinates(coordinates.x-1, coordinates.y);
-        Coordinates right = new Coordinates(coordinates.x+1, coordinates.y);
+        Coordinates up = new Coordinates(coordinates.row, coordinates.column +1);
+        Coordinates down = new Coordinates(coordinates.row, coordinates.column -1);
+        Coordinates left = new Coordinates(coordinates.row -1, coordinates.column);
+        Coordinates right = new Coordinates(coordinates.row +1, coordinates.column);
         coordinatesList.add(up);
         coordinatesList.add(down);
         coordinatesList.add(left);

@@ -1,6 +1,6 @@
-package Simulation.Actions;
+package simulation.actions;
 
-import Simulation.Map.WorldMap;
+import simulation.map.WorldMap;
 
 public abstract class Action {
    public abstract void perform(WorldMap worldMap);

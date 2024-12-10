@@ -1,8 +1,8 @@
-package Simulation.Entity.Creature;
+package simulation.entity.creature;
 
-import Simulation.Entity.Coordinates;
-import Simulation.Entity.Landscape.Grass;
-import Simulation.Map.WorldMap;
+import simulation.entity.Coordinates;
+import simulation.entity.landscape.Grass;
+import simulation.map.WorldMap;
 
 import java.util.List;
 
@@ -46,8 +46,8 @@ public class Herbivore extends Creature{
             if(worldMap.checkIfTarget(next, Grass.class)){
                 consumeGrass(next);
             }
-            worldMap.removeEntityByCoordinates(coordinates);
-            worldMap.setEntityOnMapByCoordinates(this, next);
+            worldMap.removeEntity(coordinates);
+            worldMap.setEntity(this, next);
             coordinates = next;
             }
         }
@@ -57,7 +57,7 @@ public class Herbivore extends Creature{
         if(hp<2){
             this.hp+=1;
         }
-        worldMap.removeEntityByCoordinates(herbCoordinates);
+        worldMap.removeEntity(herbCoordinates);
         System.out.println("Herbivore consumed grass now it has " + this.hp + " hp");
         }
     }
