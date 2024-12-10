@@ -29,18 +29,19 @@ public class Predator extends Creature {
 
     @Override
     public void makeMove() {
+        for(int i = 0; i<speed; i++){
         List<Coordinates> path = pathFinder.findPathToNearestTarget(coordinates,Herbivore.class,worldMap);
-        if(!path.isEmpty()){
+        if(!path.isEmpty()) {
             Coordinates next = path.get(1);
-            if(worldMap.checkIfTarget(next, Herbivore.class)){
+            if (worldMap.checkIfTarget(next, Herbivore.class)) {
                 System.out.println("attack");
                 attack(next);
-            }
-            else {
+            } else {
                 worldMap.removeEntityByCoordinates(coordinates);
                 worldMap.setEntityOnMapByCoordinates(this, next);
                 coordinates = next;
             }
+        }
         }
     }
 
@@ -49,6 +50,8 @@ public class Predator extends Creature {
         Integer herbHP = herbivore.getDamage(this.getAttack());
         if(herbHP <= 0) {
             worldMap.removeEntityByCoordinates(next);
+            speed++;
+            System.out.println("Predator ate herbivore and increased it's speed to " + speed);
         }
     }
 }

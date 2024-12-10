@@ -34,11 +34,12 @@ public class Herbivore extends Creature{
         this.pathFinder = pathFinder;
         this.worldMap = worldMap;
         this.hp=1;
-        this.speed=1;
+        this.speed=2;
     }
 
     @Override
     public void makeMove() {
+        for(int i = 0; i<speed; i++){
         List<Coordinates> path = pathFinder.findPathToNearestTarget(coordinates,Grass.class,worldMap);
         if(!path.isEmpty()){
             Coordinates next = path.get(1);
@@ -48,8 +49,8 @@ public class Herbivore extends Creature{
             worldMap.removeEntityByCoordinates(coordinates);
             worldMap.setEntityOnMapByCoordinates(this, next);
             coordinates = next;
+            }
         }
-
     }
 
     public void consumeGrass(Coordinates herbCoordinates){

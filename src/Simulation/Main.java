@@ -44,4 +44,7 @@ public class Main {
         Simulation simulation = new Simulation(initAction, mp,wm,turnActions);
         return simulation;
     }
+
+    //реализовать скорость
+    //реализовать хп
 }
