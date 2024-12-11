@@ -43,7 +43,7 @@ public class Herbivore extends Creature{
         List<Coordinates> path = pathFinder.findPathToNearestTarget(coordinates,Grass.class,worldMap);
         if(!path.isEmpty()){
             Coordinates next = path.get(1);
-            if(worldMap.checkIfTarget(next, Grass.class)){
+            if(pathFinder.checkIfTarget(next, Grass.class, worldMap)){
                 consumeGrass(next);
             }
             worldMap.removeEntity(coordinates);

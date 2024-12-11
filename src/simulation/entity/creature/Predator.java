@@ -33,7 +33,7 @@ public class Predator extends Creature {
         List<Coordinates> path = pathFinder.findPathToNearestTarget(coordinates,Herbivore.class,worldMap);
         if(!path.isEmpty()) {
             Coordinates next = path.get(1);
-            if (worldMap.checkIfTarget(next, Herbivore.class)) {
+            if (pathFinder.checkIfTarget(next, Herbivore.class, worldMap)) {
                 System.out.println("attack");
                 attack(next);
             } else {
@@ -46,7 +46,7 @@ public class Predator extends Creature {
     }
 
     public void attack(Coordinates next) {
-        Herbivore herbivore = (Herbivore) worldMap.getEntityByCoordinates(next);
+        Herbivore herbivore = (Herbivore) worldMap.getEntity(next);
         Integer herbHP = herbivore.getDamage(this.getAttack());
         if(herbHP <= 0) {
             worldMap.removeEntity(next);

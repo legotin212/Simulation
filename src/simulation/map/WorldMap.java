@@ -39,7 +39,7 @@ public class WorldMap {
         entities.remove(coordinates);
     }
 
-    public Entity getEntityByCoordinates(Coordinates coordinates) {
+    public Entity getEntity(Coordinates coordinates) {
         if(!checkIfCoordinatesIsEmpty(coordinates)){return entities.get(coordinates);}
         else {throw new IllegalArgumentException("No entity found " + coordinates);}
     }
@@ -50,17 +50,6 @@ public class WorldMap {
     public Boolean checkIfInBound(Coordinates coordinates){
         return coordinates.column >= 0 && coordinates.column <= getMapSize() - 1 && coordinates.row >= 0 && coordinates.row <= getMapSize() - 1;
     }
-
-    public Boolean checkIfPassable(Coordinates coordinates){
-        return checkIfCoordinatesIsEmpty(coordinates) || !((getEntityByCoordinates(coordinates) instanceof Rock)||(getEntityByCoordinates(coordinates) instanceof Tree)
-                ||(getEntityByCoordinates(coordinates) instanceof Predator));
-    }
-
-    public Boolean checkIfTarget(Coordinates coordinates, Class<?> target){
-        if(checkIfCoordinatesIsEmpty(coordinates)){return false;}
-        return getEntityByCoordinates(coordinates).getClass().equals(target);
-    }
-
 
     }
 

@@ -2,6 +2,8 @@ package simulation.entity.creature;
 
 import simulation.entity.Coordinates;
 import simulation.entity.landscape.Grass;
+import simulation.entity.landscape.Rock;
+import simulation.entity.landscape.Tree;
 import simulation.map.WorldMap;
 
 import java.util.*;
@@ -9,30 +11,9 @@ import java.util.stream.Collectors;
 
 public class PathFinder {
 
-    public List<Coordinates> getAvialibleCoordinateslist(Coordinates coordinates, WorldMap worldMap){
-        List<Coordinates> coordinatesList = new ArrayList<>();
-        Coordinates up = new Coordinates(coordinates.row, coordinates.column +1);
-        Coordinates down = new Coordinates(coordinates.row, coordinates.column -1);
-        Coordinates left = new Coordinates(coordinates.row -1, coordinates.column);
-        Coordinates right = new Coordinates(coordinates.row +1, coordinates.column);
-        coordinatesList.add(up);
-        coordinatesList.add(down);
-        coordinatesList.add(left);
-        coordinatesList.add(right);
-        coordinatesList =
-                coordinatesList.stream()
-                .filter(coordinates1 -> worldMap.checkIfPassable(coordinates1))
-                .filter(coordinates1 -> worldMap.checkIfInBound(coordinates1)).collect(Collectors.toList());
-        if(worldMap.checkIfTarget(coordinates, Herbivore.class)) {
-        coordinatesList= coordinatesList.stream()
-                .filter(coordinates2 -> !worldMap.checkIfTarget(coordinates2, Herbivore.class))
-                .filter(coordinates2 -> !worldMap.checkIfTarget(coordinates2, Predator.class))
-                .collect(Collectors.toList());
-        }
-        if(worldMap.checkIfTarget(coordinates, Predator.class)) {
-            coordinatesList= coordinatesList.stream().filter(coordinates2 -> !worldMap.checkIfTarget(coordinates2, Grass.class)).collect(Collectors.toList());
-        }
-        return coordinatesList;
+    public Boolean checkIfTarget(Coordinates coordinates, Class<?> target, WorldMap worldMap) {
+        if(worldMap.checkIfCoordinatesIsEmpty(coordinates)){return false;}
+        return worldMap.getEntity(coordinates).getClass().equals(target);
     }
 
     public List<Coordinates> findPathToNearestTarget(Coordinates current, Class<?> target, WorldMap worldMap) {
@@ -44,7 +25,7 @@ public class PathFinder {
         while (!unvisited.isEmpty()) {
             current = unvisited.removeFirst();
             visited.add(current);
-            if (worldMap.checkIfTarget(current,target)) {
+            if (checkIfTarget(current,target,worldMap)) {
                 List<Coordinates> path = new ArrayList<>();
                 for (Coordinates at = current; at != null; at = predecessors.get(at)) {
                     path.add(at);
@@ -62,6 +43,38 @@ public class PathFinder {
         }
 
         return DefaultPath;
+    }
+
+
+    private List<Coordinates> getAvialibleCoordinateslist(Coordinates coordinates, WorldMap worldMap){
+        List<Coordinates> coordinatesList = new ArrayList<>();
+        Coordinates up = new Coordinates(coordinates.row, coordinates.column +1);
+        Coordinates down = new Coordinates(coordinates.row, coordinates.column -1);
+        Coordinates left = new Coordinates(coordinates.row -1, coordinates.column);
+        Coordinates right = new Coordinates(coordinates.row +1, coordinates.column);
+        coordinatesList.add(up);
+        coordinatesList.add(down);
+        coordinatesList.add(left);
+        coordinatesList.add(right);
+        coordinatesList =
+                coordinatesList.stream()
+                .filter(coordinates1 -> checkIfPassable(coordinates1,worldMap))
+                .filter(coordinates1 -> worldMap.checkIfInBound(coordinates1)).collect(Collectors.toList());
+        if(checkIfTarget(coordinates, Herbivore.class,worldMap)) {
+        coordinatesList= coordinatesList.stream()
+                .filter(coordinates2 -> !checkIfTarget(coordinates2, Herbivore.class,worldMap))
+                .filter(coordinates2 -> !checkIfTarget(coordinates2, Predator.class,worldMap))
+                .collect(Collectors.toList());
+        }
+        if(checkIfTarget(coordinates, Predator.class,worldMap)) {
+            coordinatesList= coordinatesList.stream().filter(coordinates2 -> !checkIfTarget(coordinates2, Grass.class, worldMap)).collect(Collectors.toList());
+        }
+        return coordinatesList;
+    }
+
+    private Boolean checkIfPassable(Coordinates coordinates, WorldMap worldMap){
+        return worldMap.checkIfCoordinatesIsEmpty(coordinates) || !((worldMap.getEntity(coordinates) instanceof Rock)||(worldMap.getEntity(coordinates) instanceof Tree)
+                ||(worldMap.getEntity(coordinates) instanceof Predator));
     }
 
 

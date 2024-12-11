@@ -13,6 +13,7 @@ public class InitAction extends Action {
     private final int NUMBER_OF_ROCKS = 4;
     private final int NUMBER_OF_PREDATORS = 1;
     private final int NUMBER_OF_HERBIVORES = 2;
+
     private final EntityFactory entityFactory = new EntityFactory();
 
     @Override
