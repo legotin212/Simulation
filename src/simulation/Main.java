@@ -4,6 +4,7 @@ import simulation.actions.Action;
 import simulation.actions.InitAction;
 import simulation.actions.turnActions.MoveAllCreaturesAction;
 import simulation.actions.turnActions.RespawnGrassAction;
+import simulation.entity.landscape.Grass;
 import simulation.map.MapPrinter;
 import simulation.map.WorldMap;
 
@@ -22,11 +23,11 @@ public class Main {
         System.out.println("Enter map size from where 1 is 6x6 square, 2 is 12x12 square, 3 is 18x18 etc.");
         simulation.setMapSize(scanner.nextInt()*6);
         UIThread.start();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
         simulation.run();
 
 
@@ -45,5 +46,4 @@ public class Main {
         return simulation;
     }
 
-    //Сначала сделать фабрику, потом подумать как туда перенести методы из worldmap
 }

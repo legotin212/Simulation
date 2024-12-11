@@ -31,7 +31,8 @@ public class WorldMap {
 
     public void setEntity(Entity entity, Coordinates coordinates){
         if(checkIfCoordinatesIsEmpty(coordinates)&&checkIfInBound(coordinates)){entities.put(coordinates, entity);}
-        throw new IllegalArgumentException("Coordinates is not empty or out of bounds " + coordinates);
+        else
+        {throw new IllegalArgumentException("Coordinates is not empty or out of bounds " + coordinates);}
     }
     public void removeEntity(Coordinates coordinates){
         if (checkIfCoordinatesIsEmpty(coordinates)){throw new IllegalArgumentException("No entity found " + coordinates);}
