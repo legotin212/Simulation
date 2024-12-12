@@ -1,10 +1,11 @@
-package simulation.entity.creature;
+package simulation.map;
 
 import simulation.entity.Coordinates;
+import simulation.entity.creature.Herbivore;
+import simulation.entity.creature.Predator;
 import simulation.entity.landscape.Grass;
 import simulation.entity.landscape.Rock;
 import simulation.entity.landscape.Tree;
-import simulation.map.WorldMap;
 
 import java.util.*;
 import java.util.stream.Collectors;

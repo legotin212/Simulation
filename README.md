@@ -7,7 +7,7 @@
 
  ____
  ## Project description
-### Class  🐇  Herbivore - looking for herb and increase it's hp while consuming it.
+### Class  🐇  Herbivore - looking for herb and increase its hp while consuming it.
 ### Class  🍀  Grass - food for Herbivores, periodically respawns on the map
 ### Class  🐺  Predator - looking for Herbivores, has an attack power which decrease hp of the Herbivore. Also increase it's speed by killing Herbivores.
 ### Class  🌳  Tree and Class  🗿  Rock - static objects on the map which is not passable for creatures.

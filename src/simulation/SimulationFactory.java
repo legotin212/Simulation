@@ -13,9 +13,9 @@ import java.util.List;
 public class SimulationFactory {
 
 
-    public Simulation getSimulation() {
-        WorldMap worldMap = new WorldMap();
-        MapPrinter mapPrinter = new MapPrinter(worldMap);
+    public Simulation getSimulation(int height, int width) {
+        WorldMap worldMap = new WorldMap(height, width);
+        MapPrinter mapPrinter = new MapPrinter();
         InitAction initAction = new InitAction();
         MoveAllCreaturesAction moveAllCreaturesAction = new MoveAllCreaturesAction();
         RespawnGrassAction respawnGrassAction = new RespawnGrassAction();

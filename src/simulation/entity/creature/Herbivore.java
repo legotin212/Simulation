@@ -2,6 +2,7 @@ package simulation.entity.creature;
 
 import simulation.entity.Coordinates;
 import simulation.entity.landscape.Grass;
+import simulation.map.PathFinder;
 import simulation.map.WorldMap;
 
 import java.util.List;

@@ -8,9 +8,9 @@ import simulation.entity.landscape.Tree;
 import simulation.map.WorldMap;
 
 public class InitAction extends Action {
-    private final int NUMBER_OF_TREES = 6;
-    private final int NUMBER_OF_GRASSES= 8;
-    private final int NUMBER_OF_ROCKS = 4;
+    private final int NUMBER_OF_TREES = 2;
+    private final int NUMBER_OF_GRASSES= 4;
+    private final int NUMBER_OF_ROCKS = 2;
     private final int NUMBER_OF_PREDATORS = 1;
     private final int NUMBER_OF_HERBIVORES = 2;
 
@@ -18,7 +18,7 @@ public class InitAction extends Action {
 
     @Override
     public void perform(WorldMap worldMap) {
-        for(int i = 0; i< worldMap.getMapSize()/5; i++){
+        for(int i = 0; i< worldMap.getHeight()*worldMap.getWidth()/25; i++){
             for(int j=0; j<NUMBER_OF_TREES; j++){
                 entityFactory.createEntity(Tree.class.getSimpleName(),worldMap);
             }

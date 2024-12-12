@@ -1,10 +1,7 @@
 package simulation.map;
 
 import simulation.entity.Coordinates;
-import simulation.entity.creature.Predator;
 import simulation.entity.Entity;
-import simulation.entity.landscape.Rock;
-import simulation.entity.landscape.Tree;
 
 import java.util.*;
 
@@ -12,17 +9,20 @@ public class WorldMap {
 
     private final Map<Coordinates, Entity> entities = new HashMap<>();
 
-    private int mapSize;    //final
+    private final int height;
+    private final int width;
 
-    public WorldMap() {
+    public WorldMap(int height, int width) {
+        this.height = height;
+        this.width = width;
     }
 
-    public void setMapSize(int mapSize) {
-        this.mapSize = mapSize;
+    public int getHeight() {
+        return height;
     }
 
-    public  int getMapSize(){
-        return mapSize;
+    public int getWidth() {
+        return width;
     }
 
     public Collection<Entity> getAllEntities(){
@@ -48,7 +48,7 @@ public class WorldMap {
         return !entities.containsKey(coordinates);
     }
     public Boolean checkIfInBound(Coordinates coordinates){
-        return coordinates.column >= 0 && coordinates.column <= getMapSize() - 1 && coordinates.row >= 0 && coordinates.row <= getMapSize() - 1;
+        return coordinates.row >= 0 && coordinates.row <= getHeight() - 1 && coordinates.column >= 0 && coordinates.column <= getWidth() - 1;
     }
 
     }

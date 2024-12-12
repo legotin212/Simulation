@@ -34,9 +34,6 @@ public class Simulation implements Runnable {
         turnCounter++;
 
     }
-    public void setMapSize(int size){
-        worldMap.setMapSize(size);
-    }
 
     public void startSimulation(){
         initAction.perform(worldMap);

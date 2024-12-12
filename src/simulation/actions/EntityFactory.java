@@ -2,7 +2,7 @@ package simulation.actions;
 
 import simulation.entity.Coordinates;
 import simulation.entity.creature.Herbivore;
-import simulation.entity.creature.PathFinder;
+import simulation.map.PathFinder;
 import simulation.entity.creature.Predator;
 import simulation.entity.landscape.Grass;
 import simulation.entity.landscape.Rock;
@@ -40,7 +40,7 @@ public class EntityFactory {
     public Coordinates getRandomEmptyCoordinates(WorldMap worldMap){
         Random rand = new Random();
         while(true){
-            Coordinates next = new Coordinates(rand.nextInt(worldMap.getMapSize()-1), rand.nextInt(worldMap.getMapSize()-1));
+            Coordinates next = new Coordinates(rand.nextInt(worldMap.getHeight()-1), rand.nextInt(worldMap.getWidth()-1));
             if(worldMap.checkIfCoordinatesIsEmpty(next)){return next;}
         }
     }

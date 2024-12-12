@@ -13,7 +13,7 @@ public class RespawnGrassAction extends RespawnAction {
     public void perform(WorldMap worldMap) {
         Collection<Entity> entities = worldMap.getAllEntities();
         long currentGrass = entities.stream().filter(entity -> entity instanceof Grass).count();
-        if (currentGrass < worldMap.getMapSize()) {
+        if (currentGrass < (worldMap.getWidth()+worldMap.getHeight())/2) {
             entityFactory.createEntity(Grass.class.getSimpleName(),worldMap);
         }
 
