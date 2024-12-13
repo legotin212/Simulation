@@ -10,8 +10,6 @@ public class Predator extends Creature {
     private WorldMap worldMap;
     private PathFinder pathFinder;
     private int attack;
-    private Coordinates coordinates;
-
     public Predator(int speed, int hp, Coordinates coordinates,  WorldMap worldMap, PathFinder pathFinder,int attack) {
         super(speed, hp, coordinates);
         this.worldMap = worldMap;
@@ -39,7 +37,7 @@ public class Predator extends Creature {
 
     public void attack(Coordinates next) {
         Herbivore herbivore = (Herbivore) worldMap.getEntity(next);
-        int herbHP = herbivore.getDamage(this.getAttack());
+        int herbHP = herbivore.recieveDamage(this.getAttack());
         if(herbHP <= 0) {
             worldMap.removeEntity(next);
             setSpeed(getSpeed()+1);

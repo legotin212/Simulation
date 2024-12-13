@@ -10,33 +10,18 @@ import java.util.List;
 public class Herbivore extends Creature{
     private PathFinder pathFinder;
     private WorldMap worldMap;
-    public void setWorldMap(WorldMap worldMap) {
-        this.worldMap = worldMap;
-    }
 
-
-    public int getSpeed(){
-        return super.getSpeed();
-    }
-    public int getDamage(int damage) {
+    public int recieveDamage(int damage) {
         setHp(getHp()-damage);
         System.out.println("Herbivore has " + getHp()+ " hp after attack");
         return getHp();
 
     }
 
-    public Coordinates getCoordinates() {
-        return super.getCoordinates();
-    }
-
     public Herbivore(int speed, int hp, Coordinates coordinates, PathFinder pathFinder, WorldMap worldMap) {
         super(speed, hp, coordinates);
         this.pathFinder = pathFinder;
         this.worldMap = worldMap;
-    }
-
-    public int getHp() {
-        return super.getHp();
     }
 
     @Override
@@ -62,6 +47,18 @@ public class Herbivore extends Creature{
         worldMap.removeEntity(herbCoordinates);
         System.out.println("Herbivore consumed grass now it has " + getHp() + " hp");
         }
+
+    public int getSpeed(){
+        return super.getSpeed();
+        }
+
+    public Coordinates getCoordinates() {
+        return super.getCoordinates();
+    }
+
+    public int getHp() {
+        return super.getHp();
+    }
     }
 
 
