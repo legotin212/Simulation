@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class Coordinates {
     public final int column;
-
     public final  int row;
 
     public Coordinates(Integer row, Integer column) {

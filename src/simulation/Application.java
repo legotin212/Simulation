@@ -2,7 +2,7 @@ package simulation;
 
 import java.util.Scanner;
 
-public class UI {
+public class Application {
     public void start(){
         SimulationFactory factory = new SimulationFactory();
         Scanner scanner = new Scanner(System.in);
@@ -14,7 +14,7 @@ public class UI {
         UIThread thread = new UIThread(simulation);
         thread.start();
         try {
-            Thread.sleep(5000);
+            Thread.sleep(1);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

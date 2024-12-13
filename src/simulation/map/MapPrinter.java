@@ -11,12 +11,13 @@ public class MapPrinter {
     private final String TREE_SPRITE = "\uD83C\uDF33" + " ";
     private final String ROCK_SPRITE = "\uD83D\uDDFF" + " " +" ";
     private final String EMPTY_SQUARE_SPRITE = "\uD83D\uDFEB";
+
     public void printMap(WorldMap worldMap) {
-        for (int rank = 0; rank < worldMap.getHeight(); rank++) {
+        for (int row = 0; row < worldMap.getHeight(); row++) {
             StringBuilder line = new StringBuilder();
-            for (int file = 0; file < worldMap.getWidth(); file++) {
+            for (int column = 0; column < worldMap.getWidth(); column++) {
                 line.append(" ");
-                Coordinates coordinates = new Coordinates(rank, file);
+                Coordinates coordinates = new Coordinates(row, column);
                 if (worldMap.checkIfCoordinatesIsEmpty(coordinates)) {
                     line.append(EMPTY_SQUARE_SPRITE);
                 } else {

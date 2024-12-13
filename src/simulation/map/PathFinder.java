@@ -70,6 +70,7 @@ public class PathFinder {
         if(checkIfTarget(coordinates, Predator.class,worldMap)) {
             coordinatesList= coordinatesList.stream().filter(coordinates2 -> !checkIfTarget(coordinates2, Grass.class, worldMap)).collect(Collectors.toList());
         }
+
         return coordinatesList;
     }
 
